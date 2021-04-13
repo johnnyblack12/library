@@ -2,11 +2,14 @@ let newButton = document.getElementById('newButton');
 const library = document.getElementById('library');
 
 function Book(title, author, pages) {
+    
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = false;
+
     this.generate = function() {
+        
         let bookTile = document.createElement('div');
         bookTile.classList.add('book');
         let titleLine = document.createElement('p');
@@ -21,6 +24,50 @@ function Book(title, author, pages) {
         bookTile.appendChild(pagesLine);
         let newForm = document.querySelector('.newForm');
         library.insertBefore(bookTile, newForm);
+
+        let readButton = document.createElement('div');
+        readButton.classList.add('unread');
+        readButton.textContent += 'Unread';
+        bookTile.appendChild(readButton);
+        readButton.addEventListener('click', () => {
+            this.read = !this.read;
+            if (this.read) {
+                readButton.classList.replace('unread', 'read');
+                readButton.textContent = 'Read';
+            } else {
+                readButton.classList.replace('read', 'unread');
+                readButton.textContent = 'Unread';
+            }
+        });
+
+        let delButton = document.createElement('div');
+        delButton.classList.add('delete-button');
+        delButton.textContent += 'Delete';
+        bookTile.appendChild(delButton);
+        delButton.addEventListener('click', () => {
+            if (bookTile.lastChild.classList != 'warning') {
+                delButton.classList.replace('delete-button', 'delete-button-clicked')
+                let notif = document.createElement('div');
+                let y = document.createElement('div');
+                let n = document.createElement('div')
+                y.classList.add('yn');
+                n.classList.add('yn');
+                y.textContent += 'Yes';
+                n.textContent += 'No';
+                notif.classList.add('warning');
+                notif.textContent += 'Are you sure?';
+                bookTile.appendChild(notif);
+                notif.appendChild(y);
+                notif.appendChild(n);
+                y.addEventListener('click', () => {
+                    library.removeChild(bookTile);
+                });
+                n.addEventListener('click', () => {
+                    bookTile.removeChild(notif);
+                    delButton.classList.replace('delete-button-clicked', 'delete-button');
+                });
+            }
+        });
     }
 }
 
@@ -42,6 +89,7 @@ function add() {
     library.appendChild(newForm);
 
     submit.addEventListener('click', () => {
+        let error = false;
         let title = document.getElementById('title');
         let author = document.getElementById('author');
         let pages = document.getElementById('pages');
@@ -57,7 +105,7 @@ function add() {
             newButton.textContent += '+';
             library.appendChild(newButton);
             newButton.addEventListener('click', add);
-        } else {
+        } else if (newForm.lastChild.classList != 'warning') {
             let notif = document.createElement('div');
             notif.classList.add('warning');
             notif.textContent += 'All fields are required';
@@ -65,8 +113,8 @@ function add() {
             let inputs = document.querySelectorAll('input');
             inputs.forEach((input) => {
                 input.addEventListener('input', () => {
-                    if (notif) {
-                        newForm.removeChild(notif);
+                    if (newForm.lastChild.classList == 'warning') {
+                        newForm.removeChild(newForm.lastChild);
                     }
                 });
             });

@@ -1,23 +1,32 @@
+body {
+    background-color: #ddd;
+    overflow-x: hidden;
+}
+
 .header {
     font-family: 'Montserrat';
     font-size: 3.5vh;
     height: 5vh;
     background-color: #035;
     color: whitesmoke;
-    padding: 2vh 0 0 2vh;
+    position: fixed;
+    top: 0;
+    min-width: 100vw;
+    padding: 2vh 0 0 1vh;
 }
 
 .body {
     font-size: 2vh;
-    height: 89vh;
-    width: 98vw;
+    min-height: 89vh;
+    min-width: 98vw;
     background-color: #ddd;
     padding: 2vh;
+    margin-top: 7vh;
 }
 
 .book {
     width: 40vh;
-    height: 12vh;
+    min-height: 15vh;
     overflow: auto;
     background-color: #bbf;
     margin: 2vh 0;
@@ -30,6 +39,78 @@
     font-size: 2.5vh;
     color: #222;
     font-weight: bold;
+}
+
+.unread {
+    display: inline-block;
+    width: 8vh;
+    height: 2vh;
+    background-color: #aaa;
+    border-radius: 5px;
+    color: #222;
+    font-size: 1.75vh;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.25vh 0 1vh 0;
+    margin: 1vh 2vh 1vh 0;
+}
+
+.read {
+    display: inline-block;
+    width: 8vh;
+    height: 2vh;
+    background-color: palegreen;
+    border-radius: 5px;
+    color: darkslategray;
+    font-size: 1.75vh;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.25vh 0 1vh 0;
+    margin: 1vh 2vh 1vh 0;
+}
+
+.delete-button {
+    display: inline-block;
+    width: 8vh;
+    height: 2vh;
+    background-color: #035;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-size: 1.75vh;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.25vh 0 1vh 0;
+    margin-top: 1vh;
+}
+
+.delete-button-clicked {
+    display: inline-block;
+    width: 8vh;
+    height: 2vh;
+    border-radius: 5px;
+    font-size: 1.75vh;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.25vh 0 1vh 0;
+    margin-top: 1vh;
+    transform: scale(0.9);
+    background-color: whitesmoke;
+    color: darkred;
+    cursor: default;
+}
+
+.yn {
+    display: inline-block;
+    width: 3vh;
+    height: 1.5vh;
+    background-color: #aaa;
+    border-radius: 5px;
+    color: #222;
+    font-size: 1.5vh;
+    text-align: center;
+    font-weight: bold;
+    padding: .5vh 0 .5vh 0;
+    margin-left: 1vh;
 }
 
 .new-button {
@@ -83,13 +164,15 @@ label {
 .warning {
     display: inline-block;
     height: 2vh;
-    padding: 1vh;
+    padding: 0.5vh 0.5vh 1vh 0.5vh;
     margin-left: 1vh;
     line-height: 2vh;
     background-color: lightpink;
     border: solid 2px red;
     border-radius: 5px;
+    font-size: 1.5vh;
     vertical-align: text-bottom;
+    cursor: default;
 }
 
 @media(hover: hover) and (pointer: fine){
@@ -100,7 +183,34 @@ label {
         transition: 0.1s;
     }
 
-    .new-button:active, .submit:active, .submit-error:active {
+    .delete-button:hover {
+        background-color: whitesmoke;
+        color: darkred;
+        cursor: default;
+        transition: 0.1s;
+    }
+
+    .yn:hover {
+        background-color: #222;
+        color: whitesmoke;
+        cursor: default;
+    }
+
+    .unread:hover {
+        background-color: whitesmoke;
+        border-color: whitesmoke;
+        cursor: default;
+        transition: 0.1s;
+    }
+
+    .read:hover {
+        background-color: whitesmoke;
+        color: darkslategray;
+        cursor: default;
+        transition: 0.1s;
+    }
+
+    .new-button:active, .submit:active, .submit-error:active, .delete-button:active, .unread:active, .read:active, .yn:active {
         transform: scale(0.9);
         cursor: default;
     }
