@@ -16,7 +16,7 @@ body {
 }
 
 .body {
-    font-size: 2vh;
+    font-size: 1.75vh;
     min-height: 89vh;
     min-width: 98vw;
     background-color: #ddd;
@@ -52,7 +52,7 @@ body {
     text-align: center;
     font-weight: bold;
     padding: 0.25vh 0 1vh 0;
-    margin: 1vh 2vh 1vh 0;
+    margin: 1vh 1vh 1vh 0;
 }
 
 .read {
@@ -66,7 +66,7 @@ body {
     text-align: center;
     font-weight: bold;
     padding: 0.25vh 0 1vh 0;
-    margin: 1vh 2vh 1vh 0;
+    margin: 1vh 1vh 1vh 0;
 }
 
 .delete-button {
@@ -103,7 +103,7 @@ body {
     display: inline-block;
     width: 3vh;
     height: 1.5vh;
-    background-color: #aaa;
+    background-color: #bbb;
     border-radius: 5px;
     color: #222;
     font-size: 1.5vh;
@@ -149,11 +149,11 @@ label {
     text-transform: capitalize;
 }
 
-.submit {
+.button {
     display: inline-block;
     height: 5vh;
     width: 5vh;
-    margin-top: 1vh;
+    margin: 1vh 1vh 0 0;
     border-radius: 5px;
     font-size: 5vh;
     text-align: center;
@@ -161,22 +161,35 @@ label {
     color: whitesmoke;
 }
 
-.warning {
+.warning-entry {
     display: inline-block;
     height: 2vh;
-    padding: 0.5vh 0.5vh 1vh 0.5vh;
-    margin-left: 1vh;
+    padding: 0.5vh;
     line-height: 2vh;
-    background-color: lightpink;
-    border: solid 2px red;
+    background-color: whitesmoke;
+    border: solid 2px orange;
     border-radius: 5px;
     font-size: 1.5vh;
     vertical-align: text-bottom;
     cursor: default;
 }
 
+.warning-delete {
+    display: inline-block;
+    height: 2vh;
+    padding: 0.5vh 0.5vh 1vh 0.5vh;
+    margin-left: 1vh;
+    line-height: 2vh;
+    background-color: whitesmoke;
+    border: solid 2px orange;
+    border-radius: 5px;
+    font-size: 1.5vh;
+    vertical-align: baseline;
+    cursor: default;
+}
+
 @media(hover: hover) and (pointer: fine){
-    .new-button:hover, .submit:hover, .submit-error:hover {
+    .new-button:hover, .button:hover {
         background-color: whitesmoke;
         color: #035;
         cursor: default;
@@ -210,7 +223,7 @@ label {
         transition: 0.1s;
     }
 
-    .new-button:active, .submit:active, .submit-error:active, .delete-button:active, .unread:active, .read:active, .yn:active {
+    .new-button:active, .button:active, .delete-button:active, .unread:active, .read:active, .yn:active {
         transform: scale(0.9);
         cursor: default;
     }

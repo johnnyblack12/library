@@ -45,7 +45,7 @@ function Book(title, author, pages) {
         delButton.textContent += 'Delete';
         bookTile.appendChild(delButton);
         delButton.addEventListener('click', () => {
-            if (bookTile.lastChild.classList != 'warning') {
+            if (bookTile.lastChild.classList != 'warning-delete') {
                 delButton.classList.replace('delete-button', 'delete-button-clicked')
                 let notif = document.createElement('div');
                 let y = document.createElement('div');
@@ -54,7 +54,7 @@ function Book(title, author, pages) {
                 n.classList.add('yn');
                 y.textContent += 'Yes';
                 n.textContent += 'No';
-                notif.classList.add('warning');
+                notif.classList.add('warning-delete');
                 notif.textContent += 'Are you sure?';
                 bookTile.appendChild(notif);
                 notif.appendChild(y);
@@ -72,7 +72,7 @@ function Book(title, author, pages) {
 }
 
 function add() {
-    newButton.removeEventListener('click', add);
+
     library.removeChild(newButton);
     let newForm = document.createElement('form');
     newForm.classList.add('new-form');
@@ -80,46 +80,53 @@ function add() {
     genInput(newForm, 'title', 'text');
     genInput(newForm, 'author', 'text');
     genInput(newForm, 'pages', 'number');
+
+    let collapse = document.createElement('div');
+    collapse.classList.add('button');
+    collapse.textContent = '\u25C4';
+    newForm.appendChild(collapse);
     
     let submit = document.createElement('div');
-    submit.classList.add('submit');
+    submit.classList.add('button');
     submit.textContent = '+';
     newForm.appendChild(submit);
 
     library.appendChild(newForm);
 
+    collapse.addEventListener('click', collapseForm);
+
     submit.addEventListener('click', () => {
-        let error = false;
         let title = document.getElementById('title');
         let author = document.getElementById('author');
         let pages = document.getElementById('pages');
         if (title.value && author.value && pages.value) {
             let book = new Book(title.value, author.value, pages.value);
             book.generate();
-            while (newForm.hasChildNodes()) {
-                newForm.removeChild(newForm.firstChild);
-            }
-            library.removeChild(newForm);
-            newButton = document.createElement('div');
-            newButton.classList.add('new-button');
-            newButton.textContent += '+';
-            library.appendChild(newButton);
-            newButton.addEventListener('click', add);
-        } else if (newForm.lastChild.classList != 'warning') {
+            collapseForm();
+        } else if (newForm.lastChild.classList != 'warning-entry') {
             let notif = document.createElement('div');
-            notif.classList.add('warning');
-            notif.textContent += 'All fields are required';
+            notif.classList.add('warning-entry');
+            notif.textContent += 'All fields are required.';
             newForm.appendChild(notif);
             let inputs = document.querySelectorAll('input');
             inputs.forEach((input) => {
                 input.addEventListener('input', () => {
-                    if (newForm.lastChild.classList == 'warning') {
+                    if (newForm.lastChild.classList == 'warning-entry') {
                         newForm.removeChild(newForm.lastChild);
                     }
                 });
             });
         }
     });
+
+    function collapseForm() {
+        library.removeChild(newForm);
+        newButton = document.createElement('div');
+        newButton.classList.add('new-button');
+        newButton.textContent += '+';
+        library.appendChild(newButton);
+        newButton.addEventListener('click', add);
+    }
 }
 
 function genInput(form, id, type) {
