@@ -3,36 +3,36 @@ function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = false; 
+    this.read = false;
+    
+    this.container = document.createElement('div');
+    this.titleLine = document.createElement('p');
+    this.authorLine = document.createElement('p');
+    this.pagesLine = document.createElement('p');
 
     this.generate = function() {
         
-        let bookTile = document.createElement('div');
-        bookTile.classList.add('book');
-        let titleLine = document.createElement('p');
-        let authorLine = document.createElement('p');
-        let pagesLine = document.createElement('p');
-        titleLine.classList.add('book-title');
-        titleLine.textContent += this.title;
-        authorLine.textContent += this.author;
-        pagesLine.textContent += 'Pages: ' + this.pages;
-        bookTile.appendChild(titleLine);
-        bookTile.appendChild(authorLine);
-        bookTile.appendChild(pagesLine);
-        let newForm = document.querySelector('.new-form');
-        library.insertBefore(bookTile, newForm);
+        this.container.classList.add('book');
+        this.titleLine.classList.add('book-title');
+        this.titleLine.textContent += this.title;
+        this.authorLine.textContent += this.author;
+        this.pagesLine.textContent += 'Pages: ' + this.pages;
+        this.container.appendChild(this.titleLine);
+        this.container.appendChild(this.authorLine);
+        this.container.appendChild(this.pagesLine);
+        library.insertBefore(this.container, document.querySelector('.new-form'));
 
         let readButton = document.createElement('div');
-        readButton.classList.add('unread');
+        readButton.classList.add('unread-button');
         readButton.textContent += 'Unread';
-        bookTile.appendChild(readButton);
+        this.container.appendChild(readButton);
         readButton.addEventListener('click', () => {
             this.read = !this.read;
             if (this.read) {
-                readButton.classList.replace('unread', 'read');
+                readButton.classList.replace('unread-button', 'read-button');
                 readButton.textContent = 'Read';
             } else {
-                readButton.classList.replace('read', 'unread');
+                readButton.classList.replace('read-button', 'unread-button');
                 readButton.textContent = 'Unread';
             }
         });
@@ -40,9 +40,9 @@ function Book(title, author, pages) {
         let delButton = document.createElement('div');
         delButton.classList.add('delete-button');
         delButton.textContent += 'Delete';
-        bookTile.appendChild(delButton);
+        this.container.appendChild(delButton);
         delButton.addEventListener('click', () => {
-            if (bookTile.lastChild.classList != 'delete-warning') {
+            if (this.container.lastChild.classList != 'delete-warning') {
                 delButton.classList.replace('delete-button', 'delete-button-clicked')
                 let notif = document.createElement('div');
                 let y = document.createElement('div');
@@ -53,14 +53,14 @@ function Book(title, author, pages) {
                 n.textContent += 'No';
                 notif.classList.add('delete-warning');
                 notif.textContent += 'Are you sure?';
-                bookTile.appendChild(notif);
+                this.container.appendChild(notif);
                 notif.appendChild(y);
                 notif.appendChild(n);
                 y.addEventListener('click', () => {
-                    library.removeChild(bookTile);
+                    library.removeChild(this.container);
                 });
                 n.addEventListener('click', () => {
-                    bookTile.removeChild(notif);
+                    this.container.removeChild(notif);
                     delButton.classList.replace('delete-button-clicked', 'delete-button');
                 });
             }

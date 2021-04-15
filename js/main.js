@@ -1,5 +1,5 @@
-let newButton = document.getElementById('newButton');
-const library = document.getElementById('library');
+const library = document.querySelector('.library');
+let newButton = document.querySelector('.new-button');
 
 function add() {
 
