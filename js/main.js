@@ -12,12 +12,12 @@ function add() {
     genInput(newForm, 'pages', 'number');
 
     let collapse = document.createElement('div');
-    collapse.classList.add('button');
+    collapse.classList.add('control-button');
     collapse.textContent = '\u25C4';
     newForm.appendChild(collapse);
     
     let submit = document.createElement('div');
-    submit.classList.add('button');
+    submit.classList.add('control-button');
     submit.textContent = '+';
     newForm.appendChild(submit);
 

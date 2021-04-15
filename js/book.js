@@ -4,27 +4,28 @@ function Book(title, author, pages) {
     this.author = author;
     this.pages = pages;
     this.read = false;
-    
+
     this.container = document.createElement('div');
+    this.container.classList.add('book');
+
     this.titleLine = document.createElement('p');
+    this.titleLine.classList.add('book-title');
+    this.titleLine.textContent += this.title;
+
     this.authorLine = document.createElement('p');
+    this.authorLine.textContent += this.author;
+
     this.pagesLine = document.createElement('p');
+    this.pagesLine.textContent += 'Pages: ' + this.pages;
 
     this.generate = function() {
         
-        this.container.classList.add('book');
-        this.titleLine.classList.add('book-title');
-        this.titleLine.textContent += this.title;
-        this.authorLine.textContent += this.author;
-        this.pagesLine.textContent += 'Pages: ' + this.pages;
         this.container.appendChild(this.titleLine);
         this.container.appendChild(this.authorLine);
         this.container.appendChild(this.pagesLine);
         library.insertBefore(this.container, document.querySelector('.new-form'));
 
-        let readButton = document.createElement('div');
-        readButton.classList.add('unread-button');
-        readButton.textContent += 'Unread';
+        let readButton = new Button('unread-button', 'Unread');
         this.container.appendChild(readButton);
         readButton.addEventListener('click', () => {
             this.read = !this.read;
@@ -37,9 +38,7 @@ function Book(title, author, pages) {
             }
         });
 
-        let delButton = document.createElement('div');
-        delButton.classList.add('delete-button');
-        delButton.textContent += 'Delete';
+        let delButton = new Button('delete-button', 'Delete');
         this.container.appendChild(delButton);
         delButton.addEventListener('click', () => {
             if (this.container.lastChild.classList != 'delete-warning') {

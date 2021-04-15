@@ -149,7 +149,7 @@ label {
     text-transform: capitalize;
 }
 
-.button {
+.control-button {
     display: inline-block;
     height: 5vh;
     width: 5vh;
@@ -189,7 +189,7 @@ label {
 }
 
 @media(hover: hover) and (pointer: fine){
-    .new-button:hover, .button:hover {
+    .new-button:hover, .control-button:hover {
         background-color: whitesmoke;
         color: #035;
         cursor: default;
@@ -223,7 +223,7 @@ label {
         transition: 0.1s;
     }
 
-    .new-button:active, .button:active, .delete-button:active, .unread-button:active, .read-button:active, .yn-button:active {
+    .new-button:active, .control-button:active, .delete-button:active, .unread-button:active, .read-button:active, .yn-button:active {
         transform: scale(0.9);
         cursor: default;
     }
