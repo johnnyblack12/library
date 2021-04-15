@@ -41,7 +41,7 @@ body {
     font-weight: bold;
 }
 
-.unread {
+.unread-button {
     display: inline-block;
     width: 8vh;
     height: 2vh;
@@ -55,7 +55,7 @@ body {
     margin: 1vh 1vh 1vh 0;
 }
 
-.read {
+.read-button {
     display: inline-block;
     width: 8vh;
     height: 2vh;
@@ -99,7 +99,7 @@ body {
     cursor: default;
 }
 
-.yn {
+.yn-button {
     display: inline-block;
     width: 3vh;
     height: 1.5vh;
@@ -161,7 +161,7 @@ label {
     color: whitesmoke;
 }
 
-.warning-entry {
+.entry-warning {
     display: inline-block;
     height: 2vh;
     padding: 0.5vh;
@@ -174,7 +174,7 @@ label {
     cursor: default;
 }
 
-.warning-delete {
+.delete-warning {
     display: inline-block;
     height: 2vh;
     padding: 0.5vh 0.5vh 1vh 0.5vh;
