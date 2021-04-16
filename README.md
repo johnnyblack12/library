@@ -1,5 +1,5 @@
-Simple single-page app to record books in your possession and whether you have read them yet or not.
+Simple single-page personal library app to practice and test UI design.
+
+Built with class-based OOP.
 
 Functional on mobile.
-
-Not yet hooked up to database so no storage.
